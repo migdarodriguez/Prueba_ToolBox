@@ -10,7 +10,10 @@ newman run -e ToolBox_Tests.postman_environment.json ToolBox.postman_collection.
 Los casos de prueba evalúan :  
 
 Que la respuesta sea válida (código 200), que contenga body y un json
+
 Que el content Type sea válido
+
 Que la respuesta sea menor a 200 ms
+
 Que el esquema sea válido
 
