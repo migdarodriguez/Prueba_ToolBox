@@ -6,6 +6,7 @@ Se realiza un pedido GET a "https://echo-serv.tbxnet.com/v1/system/ping" y GET a
 
 Para ejecutar los casos de prueba contenidos en estos archivos, se debe hacer por Newman, ejecutando desde la consola
 newman run -e ToolBox_Tests.postman_environment.json ToolBox.postman_collection.json newman
+
 Los casos de prueba evalúan :  
 
 Que la respuesta sea válida (código 200), que contenga body y un json
