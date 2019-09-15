@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "80159a1b-8fec-4b1f-8031-248505b1bbc6",
+		"name": "ToolBox",
+		"description": "\t\t",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ToolBox_Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b026852a-8706-4402-8efc-33a646e0452a",
+						"exec": [
+							"pm.test(\"Es valido, tiene body, devuelve json \", function () { \r",
+							"     pm.response.to.be.ok;          // validar que la repuesta sea 200\r",
+							"     pm.response.to.be.withBody;    // validar si tiene body\r",
+							"     pm.response.to.be.json;        // validar que sea un JSON válido\r",
+							"});\r",
+							"\r",
+							"// Validar que tenga Content-Type en el header\r",
+							"pm.test(\"Content-Type valido\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"// Validar que la petición se haya servido en 200 ms\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"//Validar el esquema\r",
+							"var schema = {\r",
+							"    \"properties\": {\r",
+							"       \"date\" : { \"type\": \"string\" },\r",
+							"       \"ok\": { \"type\": \"boolean\" }\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"tv4.addSchema('schema', schema);\r",
+							"\r",
+							"pm.test('El esquema PING es valido', function() {\r",
+							"  pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_base}}/system/ping",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"system",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToolBox_Echo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea48ba27-c4bf-43fb-bdee-680cf8fa6f0f",
+						"exec": [
+							"pm.test(\"Es valido, tiene body, devuelve json \", function () { \r",
+							"     pm.response.to.be.ok;          // validar que la repuesta sea 200\r",
+							"     pm.response.to.be.withBody;    // validar si tiene body\r",
+							"     pm.response.to.be.json;        // validar que sea un JSON válido\r",
+							"});\r",
+							"\r",
+							"// Validar que tenga Content-Type en el header\r",
+							"pm.test(\"Content-Type valido\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"// Validar que la petición se haya servido en 200 ms\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"//Validar el esquema\r",
+							"var schema = {\r",
+							"    \"properties\": {\r",
+							"       \"text\" : { \"type\": \"string\" }\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"tv4.addSchema('schema', schema);\r",
+							"\r",
+							"pm.test('El esquema ECHO es valido', function() {\r",
+							"  pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_base}}/echo?text=test",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"echo"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
